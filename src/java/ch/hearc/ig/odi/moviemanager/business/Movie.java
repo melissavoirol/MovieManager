@@ -1,6 +1,6 @@
 package ch.hearc.ig.odi.moviemanager.business;
 
-import ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException;
+import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,9 +37,9 @@ public class Movie implements Serializable {
      * @param fn Firstname of the person
      * @param ln Lastname of the person
      * @return The new person
-     * @throws DuplicateElementException
+     * @throws NotExistingElementException
      */
-    public Person addPerson(Long id, String fn, String ln) throws DuplicateElementException {
+    public Person addPerson(Long id, String fn, String ln) throws NotExistingElementException {
 
         Person pers = null;
 
@@ -47,7 +47,7 @@ public class Movie implements Serializable {
             pers = new Person(id, fn, ln);
             people.add(pers);
         } else {
-            throw new DuplicateElementException("A person with that id already exists");
+            throw new NotExistingElementException("A person with that id already exists");
         }
         return pers;
     }
