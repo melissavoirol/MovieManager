@@ -3,7 +3,6 @@ package ch.hearc.ig.odi.moviemanager.business;
 import ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException;
 import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,11 +40,10 @@ public class Person {
     /**
      * Used to add a movie in the watched movies list of a person
      *
-     * @throws NotExistingElementException Allows to raise an exception when we
-     * add a movie with an existing id
      * @param movie The movie that we want to add in the watched movies list of
      * a person
      * @return The movie added
+     * @throws ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException
      */
     public Movie addMovie(Movie movie) throws DuplicateElementException {
         if (this.movies.containsKey(movie.getId())) {
@@ -73,6 +71,14 @@ public class Person {
         }
         this.movies.remove(movie.getId());
         return movie;
+    }
+
+    /**
+     *
+     * @return The number of movies that the current person has already seen.
+     */
+    public Integer numberOfMovies() {
+        return this.movies.size();
     }
 
     public Long getIdentifiant() {
