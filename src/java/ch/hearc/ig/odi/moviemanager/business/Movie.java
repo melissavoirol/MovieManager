@@ -1,9 +1,9 @@
 package ch.hearc.ig.odi.moviemanager.business;
 
-import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
+import ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException;
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Movie implements Serializable {
     private Long id;
     private String name;
     private String producer;
-    private List<Person> people;
+    private Map<Long, Person> people;
 
     /**
      * Mandatory parameterized constructor of the Movie class
@@ -27,7 +27,7 @@ public class Movie implements Serializable {
         this.id = id;
         this.name = name;
         this.producer = producer;
-        this.people = new LinkedList<>();
+        this.people = new HashMap<>();
     }
 
     /**
@@ -37,17 +37,17 @@ public class Movie implements Serializable {
      * @param fn Firstname of the person
      * @param ln Lastname of the person
      * @return The new person
-     * @throws NotExistingElementException
+     * @throws ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException
      */
-    public Person addPerson(Long id, String fn, String ln) throws NotExistingElementException {
+    public Person addPerson(Long id, String fn, String ln) throws DuplicateElementException {
 
         Person pers = null;
 
-        if (!people.contains(id)) {
+        if (!people.containsKey(id)) {
             pers = new Person(id, fn, ln);
-            people.add(pers);
+            people.put(id, pers);
         } else {
-            throw new NotExistingElementException("A person with that id already exists");
+            throw new DuplicateElementException("A person with that id already exists");
         }
         return pers;
     }
@@ -76,7 +76,7 @@ public class Movie implements Serializable {
         this.producer = producer;
     }
 
-    public List<Person> getPeople() {
+    public Map<Long, Person> getPeople() {
         return people;
     }
 

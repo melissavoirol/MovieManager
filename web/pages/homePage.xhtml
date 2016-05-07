@@ -5,17 +5,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Home page</title>
+        <title>#{msg['homePageHeader']}</title>
     </h:head>
-    <ui:composition template="/template/MainTemplate.xhtml">
-        <ui:define name="top">#{msg['homePageHeader']}</ui:define>
-        <ui:define name="content">
-            <!-- Initialization of the list of people in the peopleDisplayBean for the current view-->
-            <f:metadata>
-                <f:viewAction action="#{peopleDisplayBean.initPeople()}"/>
-            </f:metadata>
-
-            <h:body>
+    <!-- Initialization of the list of people in the peopleDisplayBean for the current view-->
+    <f:metadata>
+        <f:viewAction action="#{peopleDisplayBean.initPeople()}"/>
+    </f:metadata>
+    <h:body>
+        <ui:composition template="/template/MainTemplate.xhtml">
+            <ui:define name="top">#{msg['homePageHeader']}</ui:define>
+            <ui:define name="content">
                 <h1><i><b><u> #{msg['people']} </u></b></i></h1>
                 <br/>
                 <h:form>
@@ -51,8 +50,39 @@
                 </h:form>
                 <hr/>
                 <br/><br/>
-            </h:body>
-        </ui:define>  
-    </ui:composition>
+                <h2>
+                    <h:outputText value="#{msg['movies.list.title']}" />
+                </h2>
+                <h:form id="moviesListForm">
+                    <h:dataTable id="dtMovies" var="movie" value="#{moviesDisplayBean.movies}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.id']}" />
+                            </f:facet>
+                            <h:outputText id="cmdLnkViewMovieId" value="#{movie.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.name']}" />
+                            </f:facet>
+                            <h:commandLink id="cmdLnkViewMovieName" value="#{movie.name}" action="#{movieDetailsBean.showMovie(movie)}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.producer']}" />
+                            </f:facet>
+                            <h:outputText id="cmdLnkViewMovieProducer" value="#{movie.producer}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.people']}" />
+                            </f:facet>
+                            <h:outputText id="cmdLnkViewMoviePeople" value="#{movie.people.size}" />
+                        </h:column>
+                    </h:dataTable>
+                    <h:commandButton id="cmdBtnAddMovie" value="#{msg['button.label.add']}" action="createMovie" />
+                </h:form>
+            </ui:define>  
+        </ui:composition>
+    </h:body>
 </html>
-
