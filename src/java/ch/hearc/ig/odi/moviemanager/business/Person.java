@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class Person {
 
-    private Long identifiant;
+    private Long id;
     private String firstName;
     private String lastName;
     private Map<Long, Movie> movies = new HashMap<Long, Movie>();
@@ -24,15 +24,15 @@ public class Person {
     public Person() {
     }
 
-    public Person(Long identifiant, String firstName, String lastName, Map<Long, Movie> movies) {
-        this.identifiant = identifiant;
+    public Person(Long id, String firstName, String lastName, Map<Long, Movie> movies) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.movies = movies;
     }
 
-    public Person(Long identifiant, String firstName, String lastName) {
-        this.identifiant = identifiant;
+    public Person(Long id, String firstName, String lastName) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -81,12 +81,12 @@ public class Person {
         return this.movies.size();
     }
 
-    public Long getIdentifiant() {
-        return identifiant;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdentifiant(Long identifiant) {
-        this.identifiant = identifiant;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

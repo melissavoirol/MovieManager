@@ -3,6 +3,7 @@ package ch.hearc.ig.odi.moviemanager.service;
 import ch.hearc.ig.odi.moviemanager.business.Movie;
 import ch.hearc.ig.odi.moviemanager.business.Person;
 import ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException;
+import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ public class Services implements Serializable {
     /**
      * Initialise la classe de services et crée 6 personnes et 9 films pour
      * avoir des données de test.
+     *
+     * @throws java.io.IOException
      */
     public Services() throws IOException {
         try {
@@ -89,7 +92,7 @@ public class Services implements Serializable {
             people.get(6l).addMovie(movies.get(1l));
             people.get(6l).addMovie(movies.get(2l));
         } catch (DuplicateElementException ex) {
-            LOGGER.severe("ERROR!! occuring when we add a new element: " + ex);
+            LOGGER.log(Level.SEVERE, "ERROR!! occuring when we add a new element: {0}", ex);
         }
     }
 
@@ -111,5 +114,40 @@ public class Services implements Serializable {
      */
     public List<Movie> getMoviesList() {
         return new ArrayList(movies.values());
+    }
+
+    /**
+     * Retourne un objet personne pour pouvoir afficher ou modifier ses
+     * attributs
+     *
+     * @param person
+     * @return
+     * @throws NotExistingElementException
+     */
+    public Person getAPerson(Person person) throws NotExistingElementException {
+        if (this.people.containsKey(person.getId())) {
+            return this.people.get(person.getId());
+        }
+        throw new NotExistingElementException("Nobody exist with the id: " + person.getId());
+    }
+
+    /**
+     * Retourne la liste des films regardés par la personnes passées en
+     * paramètre.
+     *
+     * @param personId
+     * @return
+     * @throws NotExistingElementException
+     */
+    public List<Movie> getAPersonMovies(Long personId) {
+        List<Movie> listMovies = new ArrayList<>();
+        for (Map.Entry<Long, Movie> entry : this.movies.entrySet()) {
+            Movie m = entry.getValue();
+            if (m.getPeople().get(personId.intValue()) != null) {
+                listMovies.add(m);
+            }
+        }
+
+        return listMovies;
     }
 }

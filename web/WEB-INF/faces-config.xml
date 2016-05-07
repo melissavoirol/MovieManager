@@ -14,4 +14,50 @@
             <var>msg</var>
         </resource-bundle>
     </application>
+    
+    <!-- Navigation between the pages -->
+    <navigation-rule>
+        <from-view-id>/pages/homePage.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{personDetailBean.getAPerson(person)}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/people/displayPerson.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{personDetailBean.getAPerson(person)}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/people/displayPersonError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/people/displayPerson.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Navigation from the error pages -->
+    <navigation-rule>
+        <from-view-id>/pages/people/displayPersonError.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
 </faces-config>
