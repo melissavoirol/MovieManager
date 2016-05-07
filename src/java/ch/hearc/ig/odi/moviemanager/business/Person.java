@@ -1,7 +1,8 @@
 package ch.hearc.ig.odi.moviemanager.business;
 
+import ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException;
+import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,34 +40,45 @@ public class Person {
     /**
      * Used to add a movie in the watched movies list of a person
      *
-     * @param movie The movie that we want to add in the watched movies list of a person
+     * @param movie The movie that we want to add in the watched movies list of
+     * a person
      * @return The movie added
+     * @throws ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException
      */
-    public Movie addMovie(Movie movie) {
+    public Movie addMovie(Movie movie) throws DuplicateElementException {
         if (this.movies.containsKey(movie.getId())) {
-            //Raise une exception unique
-            //throw new UniqueException(movie.getId());
-            return null;
+            throw new DuplicateElementException(movie.getId());
         }
         this.movies.put(movie.getId(), movie);
         return movie;
     }
 
     /**
-     * Used to remove a movie from the watched movies list of a person (ex.: if there is an error and 
-     * we want to remove a movie from the list of movies of a person because he/she actually has never seen it ).
-     * 
-     * @param movie The movie that we want to remove from the watched movies list of a person 
+     * Used to remove a movie from the watched movies list of a person (ex.: if
+     * there is an error and we want to remove a movie from the list of movies
+     * of a person because he/she actually has never seen it ).
+     *
+     * @exception NotExistingElementException raise an Not existing element
+     * exception when we want to remove a film with an id which doesn't exist in
+     * the movies list.
+     * @param movie The movie that we want to remove from the watched movies
+     * list of a person
      * @return The removed movie
      */
-    public Movie removeMovie(Movie movie) {
+    public Movie removeMovie(Movie movie) throws NotExistingElementException {
         if (!this.movies.containsKey(movie.getId())) {
-            //Raise une exception n'existe pas
-            //throw new NotExistException(movie.getId());
-            return null;
+            throw new NotExistingElementException(movie.getId());
         }
         this.movies.remove(movie.getId());
         return movie;
+    }
+
+    /**
+     *
+     * @return The number of movies that the current person has already seen.
+     */
+    public Integer numberOfMovies() {
+        return this.movies.size();
     }
 
     public Long getIdentifiant() {
