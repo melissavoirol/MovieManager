@@ -4,12 +4,16 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>#{msg['homePageHeaderError']}</title>
     </h:head>
-    <ui:composition template="/MainTemplate.xhtml">
+    <ui:composition template="/template/MainTemplate.xhtml">
+        <ui:define name="top">#{msg['homePageHeaderError']}</ui:define>
         <ui:define name="content">
             <h:body>
-                Hello from Facelets
+                <center>
+                    <h1><b><u>#{msg['error']}</u></b></h1>
+                </center>
+                <h:link outcome="/pages/homePage.xhtml?faces-redirect=true" value="#{msg['backHomePage']}"/>
             </h:body>
         </ui:define>  
     </ui:composition>

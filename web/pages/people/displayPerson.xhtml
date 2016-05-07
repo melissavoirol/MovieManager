@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msg['personDetailHeader']}</title>
+    </h:head>
+    <ui:composition template="/template/MainTemplate.xhtml">
+        <ui:define name="top">#{msg['personDetailHeader']}</ui:define>
+        <ui:define name="content">
+            <h:body>
+                <h:panelGrid columns="2">
+
+                    <h:outputLabel value="#{msg['id']}" for="#{msg['id']}"/>
+                    <h:outputText id="#{msg['id']}" value="#{personDetailBean.id}"/>
+                    <h:outputLabel value="#{msg['lastname']}" for="#{msg['lastname']}"/>
+                    <h:outputText id="#{msg['lastname']}" value="#{personDetailBean.lastName}"/>
+                    <h:outputLabel value="#{msg['firstname']}" for="#{msg['firstname']}"/>
+                    <h:outputText id="#{msg['firstname']}" value="#{personDetailBean.firstName}"/>
+
+                </h:panelGrid>
+
+                <br/>
+                <br/>
+                <h1><h:outputText value="#{msg['personMoviesList']}" /></h1>
+                <br/>
+                <h:form>
+                    <h:dataTable value="#{personDetailBean.moviesList}" var="movie"
+                                 styleClass="order-table"
+                                 headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row"
+                                 >
+                        <h:column>
+                            <f:facet name="header">#{msg['id']}</f:facet>
+                                #{movie.id}
+                        </h:column>
+
+                        <h:column> 
+                            <f:facet name="header">#{msg['movieName']}</f:facet>
+                            <h:commandLink>
+                                #{movie.name}
+                            </h:commandLink>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{msg['producer']}</f:facet>
+                                #{movie.producer}
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['backHomePage']}"/>
+                    <br/><br/>
+                </h:form>
+            </h:body>
+        </ui:define>  
+    </ui:composition>
+</html>
+

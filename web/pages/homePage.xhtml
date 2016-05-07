@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msg['homePageHeader']}</title>
+    </h:head>
+    <ui:composition template="/template/MainTemplate.xhtml">
+        <ui:define name="top">#{msg['homePageHeader']}</ui:define>
+        <ui:define name="content">
+            <!-- Initialization of the list of people in the peopleDisplayBean for the current view-->
+            <f:metadata>
+                <f:viewAction action="#{peopleDisplayBean.initPeople()}"/>
+            </f:metadata>
+
+            <h:body>
+                <h1><i><b><u> #{msg['people']} </u></b></i></h1>
+                <br/>
+                <h:form>
+                    <!-- here we get the people list from peopleDisplayBean and we use the variable person to display each person -->
+                    <h:dataTable value="#{peopleDisplayBean.people}" var="person"
+                                 styleClass="order-table"
+                                 headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row">
+                        <h:column>
+                            <f:facet name="header">#{msg['id']}</f:facet>
+                                #{person.id}
+                        </h:column>            
+                        <h:column> 
+
+                            <f:facet name="header">#{msg['firstname']}</f:facet>
+                            <h:commandLink action="#{personDetailBean.getAPerson(person)}">
+                                #{person.firstName}
+                            </h:commandLink>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg['lastname']}</f:facet>
+                            <h:commandLink action="#{personDetailBean.getAPerson(person)}">
+                                #{person.lastName}
+                            </h:commandLink>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg['numbOfMovies']}</f:facet>
+                                #{person.numberOfMovies()}
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <h:commandButton value="#{msg['add']}"></h:commandButton>
+                </h:form>
+                <hr/>
+                <br/><br/>
+            </h:body>
+        </ui:define>  
+    </ui:composition>
+</html>
+
