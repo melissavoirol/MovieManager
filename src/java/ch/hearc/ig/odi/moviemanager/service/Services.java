@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
 
@@ -29,7 +27,6 @@ import javax.enterprise.context.SessionScoped;
 public class Services implements Serializable {
 
     private static final Logger LOGGER = Logger.getLogger(Services.class.getName());
-    private FileHandler fileLogHandler;
     private Map<Long, Person> people;
     private Map<Long, Movie> movies;
 
@@ -37,15 +34,9 @@ public class Services implements Serializable {
      * Initialise la classe de services et crée 6 personnes et 9 films pour
      * avoir des données de test.
      *
-     * @throws java.io.IOException
      */
-    public Services() throws IOException {
+    public Services() {
         try {
-            // To log the business errors in a file log
-            fileLogHandler = new FileHandler("movieManager_log.log");
-            fileLogHandler.setFormatter(new SimpleFormatter());
-            fileLogHandler.setLevel(Level.SEVERE);
-            LOGGER.addHandler(fileLogHandler);
 
             people = new LinkedHashMap<>();
             people.put(1l, new Person(1l, "Lara", "Clette"));

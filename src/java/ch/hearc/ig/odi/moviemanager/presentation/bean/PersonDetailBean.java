@@ -4,16 +4,13 @@ import ch.hearc.ig.odi.moviemanager.business.Movie;
 import ch.hearc.ig.odi.moviemanager.business.Person;
 import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
 import ch.hearc.ig.odi.moviemanager.service.Services;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,7 +31,6 @@ public class PersonDetailBean implements Serializable {
     Services services;
 
     private static final Logger LOGGER = Logger.getLogger(PersonDetailBean.class.getName());
-    private final FileHandler fileLogHandler;
     private Long id;
     private String firstName;
     private String lastName;
@@ -43,13 +39,8 @@ public class PersonDetailBean implements Serializable {
     /**
      * Create new instance of PersonDetailBean controller
      *
-     * @throws java.io.IOException
      */
-    public PersonDetailBean() throws IOException {
-        fileLogHandler = new FileHandler("movieManager_log.log");
-        fileLogHandler.setFormatter(new SimpleFormatter());
-        fileLogHandler.setLevel(Level.SEVERE);
-        LOGGER.addHandler(fileLogHandler);
+    public PersonDetailBean(){
     }
 
     /**

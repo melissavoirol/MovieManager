@@ -15,7 +15,9 @@
         <ui:composition template="/template/MainTemplate.xhtml">
             <ui:define name="top">#{msg['homePageHeader']}</ui:define>
             <ui:define name="content">
-                <h1><i><b><u> #{msg['people']} </u></b></i></h1>
+                <h2>
+                    <h:outputText value="#{msg['people']}" />
+                </h2>
                 <br/>
                 <h:form>
                     <!-- here we get the people list from peopleDisplayBean and we use the variable person to display each person -->
