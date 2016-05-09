@@ -53,9 +53,9 @@ public class Movie implements Serializable {
     }
 
     /**
-     * A commenter...
+     * Returns the number of people who have seen the current movie
      *
-     * @return
+     * @return the number of people who have seen the current movie
      */
     public Integer getPeopleSize() {
         return people.size();

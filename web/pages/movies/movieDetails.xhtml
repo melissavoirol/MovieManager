@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>#{msg['movieDetailsHeader']}</title>
     </h:head>
@@ -13,6 +14,42 @@
                 <h2>
                     <h:outputText value="#{msg['movieDetails.title']}" />
                 </h2>
+                <h:panelGrid border="0" columns="2">
+                    <h:outputLabel value="#{msg['movie.id']} : " />
+                    <h:outputText value="#{movieDetailsBean.movie.id}" />
+                    <h:outputLabel value="#{msg['movie.name']} : " />
+                    <h:outputText value="#{movieDetailsBean.movie.name}" />
+                    <h:outputLabel value="#{msg['movie.producer']} : " />
+                    <h:outputText value="#{movieDetailsBean.movie.producer}" />
+                </h:panelGrid>
+                <!--people list-->
+                <h3>
+                    <h:outputText value="#{msg['movie.details.people.title']}" />
+                </h3>
+                <h:form id="peopleListForm">
+                    <h:dataTable id="dtPeople" var="people" value="#{movieDetailsBean.people}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['people.id']}" />
+                            </f:facet>
+                            <h:outputText id="optTxtPeopleId" value="#{people.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['people.fn']}" />
+                            </f:facet>
+                            <h:commandLink id="cmdLnkViewPeopleFirstname" value="#{people.firstName}" action="#{personDetailBean.getAPerson(person)}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['people.ln']}" />
+                            </f:facet>
+                            <h:commandLink id="cmdLnkViewPeopleLastname" value="#{people.lastName}" action="#{personDetailBean.getAPerson(person)}" />
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <h:commandButton id="cmdBtnGoHome" value="#{msg['button.label.home']}" action="homePage" />
+                </h:form>
             </ui:define>  
         </ui:composition>
     </h:body>
