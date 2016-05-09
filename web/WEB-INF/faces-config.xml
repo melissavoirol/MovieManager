@@ -60,4 +60,18 @@
         </navigation-case>
     </navigation-rule>
     
+    <!--navigation-rule for the movieDetailsBean-->
+    <navigation-rule>
+        <navigation-case>
+            <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>          
+            <from-outcome>show</from-outcome>
+            <to-view-id>/pages/movies/movieDetails.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>          
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
 </faces-config>

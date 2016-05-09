@@ -52,6 +52,15 @@ public class Movie implements Serializable {
         return pers;
     }
 
+    /**
+     * A commenter...
+     *
+     * @return
+     */
+    public Integer getPeopleSize() {
+        return people.size();
+    }
+
     public Long getId() {
         return id;
     }
