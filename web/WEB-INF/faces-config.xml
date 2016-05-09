@@ -73,5 +73,19 @@
             <to-view-id>/pages/homePage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <!--navigation-rule for the movieDetails.xhtml page-->
+    <navigation-rule>
+        <from-view-id>/pages/movies/movieDetails.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{personDetailBean.getAPerson(person)}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/people/displayPerson.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>homePage</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
         
 </faces-config>

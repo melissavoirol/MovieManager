@@ -62,7 +62,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{msg['movie.id']}" />
                             </f:facet>
-                            <h:outputText id="cmdLnkViewMovieId" value="#{movie.id}" />
+                            <h:outputText id="optTxtMovieId" value="#{movie.id}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -74,13 +74,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{msg['movie.producer']}" />
                             </f:facet>
-                            <h:outputText id="cmdLnkViewMovieProducer" value="#{movie.producer}" />
+                            <h:outputText id="optTxtMovieProducer" value="#{movie.producer}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{msg['movie.people']}" />
                             </f:facet>
-                            <h:outputText id="cmdLnkViewMoviePeople" value="#{movie.peopleSize}" />
+                            <h:outputText id="optTxtMoviePeople" value="#{movie.peopleSize}" />
                         </h:column>
                     </h:dataTable>
                     <h:commandButton id="cmdBtnAddMovie" value="#{msg['button.label.add']}" action="createMovie" />
