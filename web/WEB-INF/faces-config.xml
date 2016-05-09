@@ -16,7 +16,7 @@
     </application>
     
     <!-- Navigation between the pages -->
-    <navigation-rule>
+    <!--<navigation-rule>
         <from-view-id>/pages/homePage.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{personDetailBean.getAPerson(person)}</from-action>
@@ -42,10 +42,10 @@
             <from-outcome>error</from-outcome>
             <to-view-id>/pages/homePageError.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+    </navigation-rule>-->
     
     <!-- Navigation from the error pages -->
-    <navigation-rule>
+    <!--<navigation-rule>
         <from-view-id>/pages/people/displayPersonError.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
@@ -58,6 +58,20 @@
             <from-outcome>error</from-outcome>
             <to-view-id>/pages/homePageError.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+    </navigation-rule>-->
     
+    <!--navigation-rule for the movieDetailsBean-->
+    <navigation-rule>
+        <navigation-case>
+            <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>          
+            <from-outcome>show</from-outcome>
+            <to-view-id>/pages/movies/movieDetails.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>          
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+        
 </faces-config>

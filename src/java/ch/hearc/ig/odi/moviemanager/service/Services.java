@@ -91,6 +91,19 @@ public class Services implements Serializable {
             people.get(6l).addMovie(movies.get(9l));
             people.get(6l).addMovie(movies.get(1l));
             people.get(6l).addMovie(movies.get(2l));
+
+            for (Map.Entry<Long, Movie> entryMovie : movies.entrySet()) {
+                Movie m = entryMovie.getValue();
+
+                for (Map.Entry<Long, Person> entryPerson : people.entrySet()) {
+                    Person p = entryPerson.getValue();
+
+                    if (p.getMovies().get(m.getId()) != null) {
+                        movies.get(m.getId()).addPerson(p.getId(), p.getFirstName(), p.getLastName());
+                    }
+                }
+            }
+
         } catch (DuplicateElementException ex) {
             LOGGER.log(Level.SEVERE, "ERROR!! occuring when we add a new element: {0}", ex);
         }

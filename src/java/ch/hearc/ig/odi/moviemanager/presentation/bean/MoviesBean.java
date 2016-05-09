@@ -13,14 +13,14 @@ import javax.inject.Named;
  *
  * @author Melissa Voirol <melissa.voirol@he-arc.ch>
  */
-@Named(value = "moviesDisplayBean")
+@Named(value = "moviesBean")
 @RequestScoped
-public class MoviesDisplayBean implements Serializable {
+public class MoviesBean implements Serializable {
 
     @Inject
     Services services;
 
-    public MoviesDisplayBean() {
+    public MoviesBean() {
 
     }
 
