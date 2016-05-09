@@ -35,7 +35,7 @@ public class MovieDetailsBean implements Serializable {
      * @return "show" if the movie is valid, "error" if the parameter is null
      */
     public String showMovie(Movie mov) {
-        if (movie != null) {
+        if (mov != null) {
             movie = mov;
             return "show";
         } else {
