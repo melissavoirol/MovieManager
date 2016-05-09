@@ -9,7 +9,11 @@
     </h:head>
     <!-- Initialization of the list of people in the peopleDisplayBean for the current view-->
     <f:metadata>
-        <f:viewAction action="#{peopleDisplayBean.initPeople()}"/>
+        <f:viewAction action="#{peopleDisplayBean.initPeople()}" />
+    </f:metadata>
+    <!--initialization of the list of movies from the moviesBean and for the current view-->
+    <f:metadata>
+        <f:viewAction action="#{moviesBean.initMovies()}" />
     </f:metadata>
     <h:body>
         <ui:composition template="/template/MainTemplate.xhtml">
@@ -27,8 +31,7 @@
                             <f:facet name="header">#{msg['id']}</f:facet>
                                 #{person.id}
                         </h:column>            
-                        <h:column> 
-
+                        <h:column>
                             <f:facet name="header">#{msg['firstname']}</f:facet>
                             <h:commandLink action="#{personDetailBean.getAPerson(person)}">
                                 #{person.firstName}
@@ -53,8 +56,9 @@
                 <h2>
                     <h:outputText value="#{msg['movies.list.title']}" />
                 </h2>
+                <!--movies list-->
                 <h:form id="moviesListForm">
-                    <h:dataTable id="dtMovies" var="movie" value="#{moviesDisplayBean.movies}">
+                    <h:dataTable id="dtMovies" var="movie" value="#{moviesBean.movies}">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{msg['movie.id']}" />
@@ -77,7 +81,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{msg['movie.people']}" />
                             </f:facet>
-                            <h:outputText id="cmdLnkViewMoviePeople" value="#{movie.people.size}" />
+                            <h:outputText id="cmdLnkViewMoviePeople" value="#{movie.peopleSize}" />
                         </h:column>
                     </h:dataTable>
                     <h:commandButton id="cmdBtnAddMovie" value="#{msg['button.label.add']}" action="createMovie" />
