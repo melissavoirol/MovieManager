@@ -52,6 +52,15 @@ public class Movie implements Serializable {
         return pers;
     }
 
+    /**
+     * Returns the number of people who have seen the current movie
+     *
+     * @return The number of people who have seen the current movie
+     */
+    public Integer getPeopleSize() {
+        return people.size();
+    }
+
     public Long getId() {
         return id;
     }
@@ -78,6 +87,10 @@ public class Movie implements Serializable {
 
     public Map<Long, Person> getPeople() {
         return people;
+    }
+
+    public void setPeople(Map<Long, Person> people) {
+        this.people = people;
     }
 
 }

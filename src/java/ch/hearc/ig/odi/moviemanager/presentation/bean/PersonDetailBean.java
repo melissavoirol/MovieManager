@@ -59,7 +59,7 @@ public class PersonDetailBean implements Serializable {
      * @param person The person that we want to instanciate in the session.
      * @return Success or Error if there is an error or no.
      */
-    public String getAPerson(Person person) {
+    /*public String getAPerson(Person person) {
         try {
             Person p = services.getAPerson(person);
             this.id = p.getId();
@@ -73,7 +73,7 @@ public class PersonDetailBean implements Serializable {
             return "error";
         }
         return "success";
-    }
+    }*/
 
     /**
      * return the watched movies list
