@@ -14,6 +14,7 @@
                 <h2>
                     <h:outputText value="#{msg['movieDetails.title']}" />
                 </h2>
+                <br/>
                 <h:panelGrid border="0" columns="2">
                     <h:outputLabel value="#{msg['movie.id']} : " />
                     <h:outputText value="#{movieDetailsBean.movie.id}" />
@@ -23,28 +24,30 @@
                     <h:outputText value="#{movieDetailsBean.movie.producer}" />
                 </h:panelGrid>
                 <!--people list-->
-                <h3>
-                    <h:outputText value="#{msg['movie.details.people.title']}" />
-                </h3>
+
+                <br/>
+                <br/>
+                <h3><h:outputText value="#{msg['movie.details.people.title']}" /></h3>
+                <br/>
                 <h:form id="peopleListForm">
-                    <h:dataTable id="dtPeople" var="people" value="#{movieDetailsBean.people}">
+                    <h:dataTable id="dtPeople" var="person" value="#{movieDetailsBean.people}">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{msg['people.id']}" />
                             </f:facet>
-                            <h:outputText id="optTxtPeopleId" value="#{people.id}" />
+                            <h:outputText id="optTxtPeopleId" value="#{person.id}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{msg['people.fn']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkViewPeopleFirstname" value="#{people.firstName}" action="#{personDetailBean.getAPerson(person)}" />
+                            <h:commandLink id="cmdLnkViewPeopleFirstname" value="#{person.firstName}" action="#{personDetailBean.getAPerson(person)}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{msg['people.ln']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkViewPeopleLastname" value="#{people.lastName}" action="#{personDetailBean.getAPerson(person)}" />
+                            <h:commandLink id="cmdLnkViewPeopleLastname" value="#{person.lastName}" action="#{personDetailBean.getAPerson(person)}" />
                         </h:column>
                     </h:dataTable>
                     <br/>

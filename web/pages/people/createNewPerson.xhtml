@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msg['createPersonHeader']}</title>
+    </h:head>
+    <ui:composition template="/template/MainTemplate.xhtml">
+        <ui:define name="top">#{msg['createPersonHeader']}</ui:define>
+        <ui:define name="content">
+            <h:body>
+                <h2>#{msg['createPersonHeader']}</h2>
+                <h:form>
+                    <!-- A new person's informations -->
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="#{msg['id']}" for="#{msg['id']}"/>
+                        <h:inputText id="#{msg['id']}" value="#{createNewPersonBean.id}" required="true" requiredMessage="#{msg['missPersonId']}"/>
+                        <h:outputLabel value="#{msg['lastname']}" for="#{msg['lastname']}"/>
+                        <h:inputText id="#{msg['lastname']}" value="#{createNewPersonBean.lastName}" required="true" requiredMessage="#{msg['missPersonLastname']}"/>
+                        <h:outputLabel value="#{msg['firstname']}" for="#{msg['firstname']}"/>
+                        <h:inputText id="#{msg['firstname']}" value="#{createNewPersonBean.firstName}" required="true" requiredMessage="#{msg['missPersonFirstname']}"/>
+                    </h:panelGrid>
+                    <br/>
+                    <h:commandButton value="#{msg['save']}" action="#{createNewPersonBean.savePerson}"/>
+                    <h:commandButton type="reset" value="#{msg['reset']}"/>
+
+                    <!-- Person's watched movies -->
+                    <br/>
+                    <br/>
+                    <h3><h:outputText value="#{msg['personMoviesList']}" /></h3>
+                    <br/>
+                    <!-- add a movie -->
+                    <h:selectOneMenu value="#{createNewPersonBean.movieId}">
+                        <f:selectItem itemLabel="#{msg['choiseMovie']}"/>
+                        <f:selectItems value="#{moviesBean.movies}" var="movie" itemLabel="#{movie.name}" itemValue="#{movie.id}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="#{msg['select']}" action="#{createNewPersonBean.addMovie}" />
+                </h:form>
+                <br/>
+
+                <h:form>
+                    <!-- Show movies list -->
+                    <h:dataTable value="#{createNewPersonBean.moviesList}" var="movie"
+                                 styleClass="order-table"
+                                 headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row"
+                                 >
+                        <h:column>
+                            <f:facet name="header">#{msg['id']}</f:facet>
+                                #{movie.id}
+                        </h:column>
+
+                        <h:column> 
+                            <f:facet name="header">#{msg['movieName']}</f:facet>
+                            <h:outputText value="#{movie.name}"/>
+                        </h:column>
+                        <h:column> 
+                            <f:facet name="header">#{msg['remove']}</f:facet>
+                            <h:commandLink value="#{msg['rem']}" action="#{createNewPersonBean.removeMovie(movie)}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <br/>
+                    <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['cancel']}"/>
+                    <br/><br/>
+                </h:form>
+            </h:body>
+        </ui:define>  
+    </ui:composition>
+</html>

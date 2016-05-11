@@ -48,10 +48,11 @@
                         </h:column>
                     </h:dataTable>
                     <br/>
-                    <h:commandButton value="#{msg['add']}"></h:commandButton>
+                    <h:commandButton action="#{createNewPersonBean.processPageCreatePerson()}" value="#{msg['add']}"></h:commandButton>
                 </h:form>
                 <hr/>
                 <br/><br/>
+
                 <!--movies list-->
                 <h2>
                     <h:outputText value="#{msg['movies.list.title']}" />

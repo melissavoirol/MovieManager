@@ -78,9 +78,14 @@ public class Person {
      * @return The number of movies that the current person has already seen.
      */
     public Integer numberOfMovies() {
-        return this.movies.size();
+        try {
+            return this.movies.size();
+        } catch (NullPointerException ex) {
+            return 0;
+        }
     }
 
+    //Getter and setter methods
     public Long getId() {
         return id;
     }

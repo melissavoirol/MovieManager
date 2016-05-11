@@ -30,7 +30,8 @@ public class PeopleDisplayBean implements Serializable {
      * Create new instance of PeopleDisplayBean controller
      *
      */
-    public PeopleDisplayBean(){
+    public PeopleDisplayBean() {
+
     }
 
     /**
