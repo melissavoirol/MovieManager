@@ -40,7 +40,7 @@ public class PersonDetailBean implements Serializable {
      * Create new instance of PersonDetailBean controller
      *
      */
-    public PersonDetailBean(){
+    public PersonDetailBean() {
     }
 
     /**
@@ -57,7 +57,11 @@ public class PersonDetailBean implements Serializable {
             this.firstName = p.getFirstName();
             this.lastName = p.getLastName();
             this.movies = new HashMap<Long, Movie>();
-            this.movies.putAll(p.getMovies());
+            try {
+                this.movies.putAll(p.getMovies());
+            } catch (NullPointerException ex) {
+
+            }
 
         } catch (NotExistingElementException ex) {
             LOGGER.log(Level.SEVERE, "ERROR! occured when we load a person {0}", ex);
@@ -72,10 +76,14 @@ public class PersonDetailBean implements Serializable {
      * @return
      */
     public List<Movie> getMoviesList() {
-        //return services.getAPersonMovies(this.id);
-        return new ArrayList(movies.values());
+        try {
+            return new ArrayList(movies.values());
+        } catch (NullPointerException ex) {
+            return new ArrayList();
+        }
     }
 
+    //Getter and setter methods
     public Long getId() {
         return id;
     }

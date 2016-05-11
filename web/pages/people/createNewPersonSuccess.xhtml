@@ -4,18 +4,20 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{msg['personDetailHeaderError']}</title>
+        <title>#{msg['createNewPersonHeaderSuccess']}</title>
     </h:head>
     <ui:composition template="/template/MainTemplate.xhtml">
-        <ui:define name="top">#{msg['personDetailHeaderError']}</ui:define>
+        <ui:define name="top">#{msg['createNewPersonHeaderSuccess']}</ui:define>
         <ui:define name="content">
             <h:body>
-                <!-- We redirect the user on this error page when there is a problem to load the detail of a person -->
                 <center>
-                    <h1><b><u>#{msg['error']}</u></b></h1>
+                    <!--We show a mess of success when we added a new person successfully -->
+                    <h1><b><u>#{msg['success']}</u></b></h1>
+                    <h:outputText value="#{createNewPersonBean.lastName}, #{createNewPersonBean.firstName} #{msg['newPersonAdded']}"></h:outputText>
                 </center>
                 <h:form>
                     <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['backHomePage']}"/>
+                    <h:commandButton action="#{createNewPersonBean.processPageCreatePerson()}" value="#{msg['backAddPersonPage']}"/>
                 </h:form>
             </h:body>
         </ui:define>  

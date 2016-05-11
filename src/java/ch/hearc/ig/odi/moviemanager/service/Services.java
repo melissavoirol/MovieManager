@@ -4,7 +4,6 @@ import ch.hearc.ig.odi.moviemanager.business.Movie;
 import ch.hearc.ig.odi.moviemanager.business.Person;
 import ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException;
 import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -111,6 +110,28 @@ public class Services implements Serializable {
     }
 
     /**
+     *
+     * @param newPerson The person that we want to add
+     * @throws DuplicateElementException
+     */
+    public void addPerson(Person newPerson) throws DuplicateElementException {
+        if (this.people.containsKey(newPerson.getId())) {
+            throw new DuplicateElementException("A person with the id: " + newPerson.getId() + " already exist");
+        }
+        this.people.put(newPerson.getId(), newPerson);
+        try {
+            for (Map.Entry<Long, Movie> entryMovie : newPerson.getMovies().entrySet()) {
+                Movie m = entryMovie.getValue();
+                if (this.movies.get(m.getId()) != null) {
+                    movies.get(m.getId()).addPerson(newPerson.getId(), newPerson.getFirstName(), newPerson.getLastName());
+                }
+            }
+        } catch (NullPointerException ex) {
+        }
+
+    }
+
+    /**
      * Retourne une List contenant tous les films du système Utile pour
      * l'affichage des films dans les facelets
      *
@@ -141,7 +162,6 @@ public class Services implements Serializable {
      *
      * @param personId
      * @return
-     * @throws NotExistingElementException
      */
     public List<Movie> getAPersonMovies(Long personId) {
         List<Movie> listMovies = new ArrayList<>();
@@ -153,5 +173,14 @@ public class Services implements Serializable {
         }
 
         return listMovies;
+    }
+
+    /**
+     *
+     * @param idMovie
+     * @return A movie
+     */
+    public Movie getMovieById(Long idMovie) {
+        return this.movies.get(idMovie);
     }
 }

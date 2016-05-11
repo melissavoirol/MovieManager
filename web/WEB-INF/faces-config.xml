@@ -3,6 +3,8 @@
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    
+    <!-- Internationalization -->
     <application>
         <locale-config>
             <default-locale>en</default-locale>
@@ -16,6 +18,7 @@
     </application>
     
     <!-- Navigation between the pages -->
+    <!-- From home page (homePage.xhtml)-->
     <navigation-rule>
         <from-view-id>/pages/homePage.xhtml</from-view-id>
         <navigation-case>
@@ -28,7 +31,14 @@
             <from-outcome>error</from-outcome>
             <to-view-id>/pages/people/displayPersonError.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{createNewPersonBean.processPageCreatePerson()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/people/createNewPerson.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
+    
+    <!-- From a person's details page (displayPerson.xhtml)-->
     <navigation-rule>
         <from-view-id>/pages/people/displayPerson.xhtml</from-view-id>
         <navigation-case>
@@ -42,9 +52,49 @@
             <from-outcome>error</from-outcome>
             <to-view-id>/pages/homePageError.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>          
+            <from-outcome>show</from-outcome>
+            <to-view-id>/pages/movies/movieDetails.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- From create a new person page (createNewPerson.xhtml)-->
+    <navigation-rule>
+        <from-view-id>/pages/people/createNewPerson.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{createNewPersonBean.savePerson}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/people/createNewPersonSuccess.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{createNewPersonBean.savePerson}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/people/createNewPersonError.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{createNewPersonBean.addMovie}</from-action>
+            <to-view-id>/pages/people/createNewPerson.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{createNewPersonBean.removeMovie(movie)}</from-action>
+            <to-view-id>/pages/people/createNewPerson.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
     <!-- Navigation from the error pages -->
+    <!--(displayPersonError.xhtml) -->
     <navigation-rule>
         <from-view-id>/pages/people/displayPersonError.xhtml</from-view-id>
         <navigation-case>
@@ -60,6 +110,51 @@
         </navigation-case>
     </navigation-rule>
     
+    <!--(createNewPersonError.xhtml) -->
+    <navigation-rule>
+        <from-view-id>/pages/people/createNewPersonError.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{createNewPersonBean.processPageCreatePerson()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/people/createNewPerson.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Navigation from the success pages -->
+    <!--(createNewPersonSuccess.xhtml) -->
+    <navigation-rule>
+        <from-view-id>/pages/people/createNewPersonSuccess.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{createNewPersonBean.processPageCreatePerson()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/people/createNewPerson.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    
     <!--navigation-rule for the movieDetailsBean-->
     <navigation-rule>
         <navigation-case>
@@ -71,6 +166,7 @@
             <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>          
             <from-outcome>error</from-outcome>
             <to-view-id>/pages/homePage.xhtml</to-view-id>
+            <redirect>true</redirect>
         </navigation-case>
     </navigation-rule>
     
@@ -85,6 +181,7 @@
         <navigation-case>
             <from-outcome>homePage</from-outcome>
             <to-view-id>/pages/homePage.xhtml</to-view-id>
+            <redirect>true</redirect>
         </navigation-case>
     </navigation-rule>
         

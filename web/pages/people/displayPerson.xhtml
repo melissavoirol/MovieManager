@@ -11,6 +11,9 @@
         <ui:define name="top">#{msg['personDetailHeader']}</ui:define>
         <ui:define name="content">
             <h:body>
+                <h2>#{msg['personDetailHeader']}</h2>
+                <br/>
+                <!-- a person's informations -->
                 <h:panelGrid columns="2">
 
                     <h:outputLabel value="#{msg['id']}" for="#{msg['id']}"/>
@@ -22,9 +25,10 @@
 
                 </h:panelGrid>
 
+                <!-- movies list -->
                 <br/>
                 <br/>
-                <h2><h:outputText value="#{msg['personMoviesList']}" /></h2>
+                <h3><h:outputText value="#{msg['personMoviesList']}" /></h3>
                 <br/>
                 <h:form>
                     <h:dataTable value="#{personDetailBean.moviesList}" var="movie"
@@ -39,9 +43,7 @@
 
                         <h:column> 
                             <f:facet name="header">#{msg['movieName']}</f:facet>
-                            <h:commandLink>
-                                #{movie.name}
-                            </h:commandLink>
+                            <h:commandLink id="cmdLnkViewMovieName" value="#{movie.name}" action="#{movieDetailsBean.showMovie(movie)}" />
                         </h:column>
 
                         <h:column>
