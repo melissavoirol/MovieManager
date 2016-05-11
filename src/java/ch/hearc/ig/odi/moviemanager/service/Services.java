@@ -4,7 +4,6 @@ import ch.hearc.ig.odi.moviemanager.business.Movie;
 import ch.hearc.ig.odi.moviemanager.business.Person;
 import ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException;
 import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -118,6 +117,18 @@ public class Services implements Serializable {
      */
     public List<Movie> getMoviesList() {
         return new ArrayList(movies.values());
+    }
+    
+    /**
+     * Creates a new movie
+     * 
+     * @param id Unique number of the movie
+     * @param name Name of the movie
+     * @param producer Producer of the movie
+     * @throws DuplicateElementException 
+     */
+    public void saveMovie(Long id, String name, String producer) throws DuplicateElementException {
+        movies.put(id, new Movie(id, name, producer));
     }
 
     /**

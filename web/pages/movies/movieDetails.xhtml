@@ -5,14 +5,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>#{msg['movieDetailsHeader']}</title>
+        <title>#{msg['movie.details.title.and.header']}</title>
     </h:head>
     <h:body>
         <ui:composition template="/template/MainTemplate.xhtml">
-            <ui:define name="top">#{msg['movieDetailsHeader']}</ui:define>
+            <ui:define name="top">#{msg['movie.details.title.and.header']}</ui:define>
             <ui:define name="content">
                 <h2>
-                    <h:outputText value="#{msg['movieDetails.title']}" />
+                    <h:outputText value="#{msg['movie.details.title.and.header']}" />
                 </h2>
                 <h:panelGrid border="0" columns="2">
                     <h:outputLabel value="#{msg['movie.id']} : " />
@@ -24,7 +24,7 @@
                 </h:panelGrid>
                 <!--people list-->
                 <h3>
-                    <h:outputText value="#{msg['movie.details.people.title']}" />
+                    <h:outputText value="#{msg['movie.details.list.people']}" />
                 </h3>
                 <h:form id="peopleListForm">
                     <h:dataTable id="dtPeople" var="people" value="#{movieDetailsBean.people}">
@@ -38,13 +38,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{msg['people.fn']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkViewPeopleFirstname" value="#{people.firstName}" action="#{personDetailBean.getAPerson(person)}" />
+                            <h:commandLink id="cmdLnkViewPeopleFirstname" value="#{people.firstName}" action="#{personDetailBean.getAPerson(people)}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{msg['people.ln']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkViewPeopleLastname" value="#{people.lastName}" action="#{personDetailBean.getAPerson(person)}" />
+                            <h:commandLink id="cmdLnkViewPeopleLastname" value="#{people.lastName}" action="#{personDetailBean.getAPerson(people)}" />
                         </h:column>
                     </h:dataTable>
                     <br/>
