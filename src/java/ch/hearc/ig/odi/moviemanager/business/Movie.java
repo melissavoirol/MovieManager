@@ -31,7 +31,7 @@ public class Movie implements Serializable {
     }
 
     /**
-     * Add a new person to the movie and returns an instance of that person
+     * Adds a new person to the movie and returns an instance of that person
      *
      * @param id Unique number of the person
      * @param fn Firstname of the person

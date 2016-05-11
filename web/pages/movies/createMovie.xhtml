@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>#{msg['movie.create.title.and.header']}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/MainTemplate.xhtml">
+            <ui:define name="top">#{msg['movie.create.title.and.header']}</ui:define>
+            <ui:define name="content">
+                <h2>#{msg['movie.create.title.and.header']}</h2>                
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{msg['movie.id']}" for="id" /> 
+                        <h:inputText id="id" value="#{movieCreateBean.id}" required="true" requiredMessage="#{msg['movie.create.error.id.required']}" />
+                        <h:outputLabel value="#{msg['movie.name']}" for="name" />
+                        <h:inputText id="name" value="#{movieCreateBean.name}" required="true" requiredMessage="#{msg['movie.create.error.name.required']}" />
+                        <h:outputLabel value="#{msg['movie.producer']}" for="producer"/>
+                        <h:inputText id="producer" value="#{movieCreateBean.producer}" required="true" requiredMessage="#{msg['movie.create.error.producer.required']}" />
+                    </h:panelGrid>
+                    <h:commandButton id="reset" value="#{msg['button.label.reset']}" type="reset" /> &nbsp;
+                    <h:commandButton id="submit" value="#{msg['button.label.submit']}" action="${movieCreateBean.saveMovie}" />               
+                </h:form>                
+                <br/>
+                <h:form>            
+                    <h:commandButton id="cancel" value="#{msg['button.label.cancel']}" action="homePage" /> &nbsp;         
+                </h:form>
+            </ui:define>  
+        </ui:composition>
+    </h:body>
+</html>

@@ -140,6 +140,18 @@ public class Services implements Serializable {
     public List<Movie> getMoviesList() {
         return new ArrayList(movies.values());
     }
+    
+    /**
+     * Creates a new movie
+     * 
+     * @param id Unique number of the movie
+     * @param name Name of the movie
+     * @param producer Producer of the movie
+     * @throws DuplicateElementException 
+     */
+    public void saveMovie(Long id, String name, String producer) throws DuplicateElementException {
+        movies.put(id, new Movie(id, name, producer));
+    }
 
     /**
      * Retourne un objet personne pour pouvoir afficher ou modifier ses

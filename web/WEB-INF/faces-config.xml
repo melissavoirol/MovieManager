@@ -153,10 +153,9 @@
         </navigation-case>
     </navigation-rule>
     
-    
-    
-    <!--navigation-rule for the movieDetailsBean-->
+    <!--navigation-rule for the homePage.xhtml page-->
     <navigation-rule>
+        <from-view-id>/pages/homePage.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>          
             <from-outcome>show</from-outcome>
@@ -168,13 +167,45 @@
             <to-view-id>/pages/homePage.xhtml</to-view-id>
             <redirect>true</redirect>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>createMovie</from-outcome>
+            <to-view-id>/pages/movies/createMovie.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--navigation-rule for the createMovie.xhtml page-->
+    <navigation-rule>
+        <from-view-id>/pages/movies/createMovie.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>${movieCreateBean.saveMovie}</from-action>          
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/movies/createMovieOk.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>${movieCreateBean.saveMovie}</from-action>          
+            <from-outcome>errorDuplicate</from-outcome>
+            <to-view-id>/pages/movies/createMovie.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>homePage</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--navigation-rule for the createMovieOk.xhtml page-->
+    <navigation-rule>
+        <from-view-id>/pages/movies/createMovieOk.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>homePage</from-outcome>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
     <!--navigation-rule for the movieDetails.xhtml page-->
     <navigation-rule>
         <from-view-id>/pages/movies/movieDetails.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{personDetailBean.getAPerson(person)}</from-action>
+            <from-action>#{personDetailBean.getAPerson(people)}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/pages/people/displayPerson.xhtml</to-view-id>
         </navigation-case>

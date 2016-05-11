@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>#{msg['homePageHeader']}</title>
+        <title>#{msg['homepage.title.and.header']}</title>
     </h:head>
     <!-- Initialization of the list of people in the peopleDisplayBean for the current view-->
     <f:metadata>
@@ -13,7 +13,7 @@
     </f:metadata>
     <h:body>
         <ui:composition template="/template/MainTemplate.xhtml">
-            <ui:define name="top">#{msg['homePageHeader']}</ui:define>
+            <ui:define name="top">#{msg['homepage.title.and.header']}</ui:define>
             <ui:define name="content">
                 <h2>
                     <h:outputText value="#{msg['people']}" />
