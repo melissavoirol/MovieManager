@@ -33,9 +33,10 @@
                     <h3><h:outputText value="#{msg['personMoviesList']}" /></h3>
                     <br/>
                     <!-- add a movie -->
-                    <h:selectOneMenu value="#{createNewPersonBean.movieId}">
+                    <h:selectOneMenu  id="lovMovie" value="#{createNewPersonBean.movieToAdd}">
                         <f:selectItem itemLabel="#{msg['choiseMovie']}"/>
-                        <f:selectItems value="#{moviesBean.movies}" var="movie" itemLabel="#{movie.name}" itemValue="#{movie.id}"/>
+                        <f:converter binding="#{movieLOVConverter}" />
+                        <f:selectItems value="#{moviesBean.movies}" var="movie" itemLabel="#{movie.name}"  />
                     </h:selectOneMenu>
                     <h:commandButton value="#{msg['select']}" action="#{createNewPersonBean.addMovie}" />
                 </h:form>
