@@ -78,14 +78,13 @@ public class CreateNewPersonBean implements Serializable {
      * Use to add a film from the list in the class services to the movies list
      * of the current person.
      */
-    public void addMovie() { 
-        System.out.println("id :" + this.movieToAdd.getName());
+    public void addMovie() {
         if (this.movieToAdd == null) {
             return;
         }
-       if (this.movies == null) {
-           this.movies = new HashMap<>();
-       }
+        if (this.movies == null) {
+            this.movies = new HashMap<>();
+        }
         this.movies.put(this.movieToAdd.getId(), this.movieToAdd);
     }
 

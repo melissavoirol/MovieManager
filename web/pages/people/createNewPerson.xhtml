@@ -12,7 +12,7 @@
         <ui:define name="content">
             <h:body>
                 <h2>#{msg['createPersonHeader']}</h2>
-                <h:form>
+                <h:form id="newPerson">
                     <!-- A new person's informations -->
                     <h:panelGrid columns="2">
 
@@ -38,13 +38,13 @@
                         <f:converter binding="#{movieLOVConverter}" />
                         <f:selectItems value="#{moviesBean.movies}" var="movie" itemLabel="#{movie.name}"  />
                     </h:selectOneMenu>
-                    <h:commandButton value="#{msg['select']}" action="#{createNewPersonBean.addMovie}" />
-                </h:form>
-                <br/>
+                    <h:commandButton id="addAMovie" value="#{msg['select']}">
+                        <f:ajax execute="lovMovie" render="moviesAdded" listener="#{createNewPersonBean.addMovie}"/>
+                    </h:commandButton>
 
-                <h:form>
+
                     <!-- Show movies list -->
-                    <h:dataTable value="#{createNewPersonBean.moviesList}" var="movie"
+                    <h:dataTable id="moviesAdded" value="#{createNewPersonBean.moviesList}" var="movie"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
                                  rowClasses="order-table-odd-row,order-table-even-row"
@@ -60,9 +60,14 @@
                         </h:column>
                         <h:column> 
                             <f:facet name="header">#{msg['remove']}</f:facet>
-                            <h:commandLink value="#{msg['rem']}" action="#{createNewPersonBean.removeMovie(movie)}"/>
+                            <h:commandButton value="#{msg['rem']}" action="#{createNewPersonBean.removeMovie(movie)}">
+                            </h:commandButton>
                         </h:column>
                     </h:dataTable>
+                </h:form>
+                <br/>
+
+                <h:form>
                     <br/>
                     <br/>
                     <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['cancel']}"/>
