@@ -36,10 +36,13 @@
                     <h:selectOneMenu  id="lovMovie" value="#{createNewPersonBean.movieToAdd}">
                         <f:selectItem itemLabel="#{msg['choiseMovie']}"/>
                         <f:converter binding="#{movieLOVConverter}" />
-                        <f:selectItems value="#{moviesBean.movies}" var="movie" itemLabel="#{movie.name}"  />
+                        <f:selectItems value="#{createNewPersonBean.allMoviesList}" var="movie" itemLabel="#{movie.name}"/> 
                     </h:selectOneMenu>
                     <h:commandButton id="addAMovie" value="#{msg['select']}">
                         <f:ajax execute="lovMovie" render="moviesAdded" listener="#{createNewPersonBean.addMovie}"/>
+
+                        <!-- to renew the possibilities when a film is added in the list of movies of the new person -->
+                        <f:ajax execute="addAMovie" render="lovMovie"/>
                     </h:commandButton>
 
 

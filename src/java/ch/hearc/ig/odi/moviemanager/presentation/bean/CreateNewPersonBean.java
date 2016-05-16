@@ -112,6 +112,28 @@ public class CreateNewPersonBean implements Serializable {
         }
     }
 
+    /**
+     * This method return only movies which aren't yet added in the movies list
+     * of the new person.
+     *
+     * @return
+     */
+    public List<Movie> getAllMoviesList() {
+        List<Movie> lm = services.getMoviesList();
+        List<Movie> lm2 = new ArrayList();
+
+        for (Movie m : lm) {
+            if (this.movies == null) {
+                return lm;
+            }
+            if (this.movies.get(m.getId()) == null) {
+                lm2.add(m);
+            }
+        }
+
+        return lm2;
+    }
+
     //Getter and setter methods
     public Long getId() {
         return id;
