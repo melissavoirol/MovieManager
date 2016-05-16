@@ -27,13 +27,14 @@ public class CreateNewPersonBean implements Serializable {
     private Long id;
     private String lastName;
     private String firstName;
-    private Long movieId;
+    private Movie movieToAdd;
     private Map<Long, Movie> movies;
 
     @Inject
     Services services;
 
     public CreateNewPersonBean() {
+        movies = new HashMap<>();
     }
 
     /**
@@ -68,7 +69,7 @@ public class CreateNewPersonBean implements Serializable {
         this.id = null;
         this.firstName = null;
         this.lastName = null;
-        this.movieId = null;
+        this.movieToAdd = null;
         this.movies = null;
         return "success";
     }
@@ -77,22 +78,15 @@ public class CreateNewPersonBean implements Serializable {
      * Use to add a film from the list in the class services to the movies list
      * of the current person.
      */
-    public void addMovie() {
-        if (this.movieId == null) {
+    public void addMovie() { 
+        System.out.println("id :" + this.movieToAdd.getName());
+        if (this.movieToAdd == null) {
             return;
         }
-        try {
-            //If the list already contains the added movie we do nothing
-            if (!this.movies.containsKey(this.movieId)) {
-                this.movies.put(this.movieId, services.getMovieById(this.movieId));
-            }
-
-        } catch (NullPointerException ex) {
-            //If the movies list is empty
-            Movie m = services.getMovieById(this.movieId);
-            this.movies = new HashMap();
-            this.movies.put(m.getId(), m);
-        }
+       if (this.movies == null) {
+           this.movies = new HashMap<>();
+       }
+        this.movies.put(this.movieToAdd.getId(), this.movieToAdd);
     }
 
     /**
@@ -144,12 +138,12 @@ public class CreateNewPersonBean implements Serializable {
         this.firstName = firstName;
     }
 
-    public Long getMovieId() {
-        return movieId;
+    public Movie getMovieToAdd() {
+        return movieToAdd;
     }
 
-    public void setMovieId(Long movie) {
-        this.movieId = movie;
+    public void setMovieToAdd(Movie movie) {
+        this.movieToAdd = movie;
     }
 
     public Map<Long, Movie> getMovies() {
