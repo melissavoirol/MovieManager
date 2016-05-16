@@ -1,4 +1,4 @@
-package ch.hearc.ig.odi.moviemanager.converter;
+package ch.hearc.ig.odi.moviemanager.presentation.converter;
 
 import ch.hearc.ig.odi.moviemanager.business.Movie;
 import ch.hearc.ig.odi.moviemanager.service.Services;
@@ -24,7 +24,6 @@ public class MovieLOVConverter implements Converter {
     //Allows to get a movie object (value parameter)
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        System.out.println("getAsOhj " + value);
         if (value == null) {
             return null;
         } else {
