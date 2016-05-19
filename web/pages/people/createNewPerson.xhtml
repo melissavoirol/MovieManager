@@ -8,6 +8,7 @@
         <title>#{msg['createPersonHeader']}</title>
     </h:head>
     <ui:composition template="/template/MainTemplate.xhtml">
+        <ui:define name="title">#{msg['createPersonHeader']}</ui:define>
         <ui:define name="top">#{msg['createPersonHeader']}</ui:define>
         <ui:define name="content">
             <h:body>
@@ -17,11 +18,11 @@
                     <h:panelGrid columns="2">
 
                         <h:outputLabel value="#{msg['id']}" for="#{msg['id']}"/>
-                        <h:inputText id="#{msg['id']}" value="#{createNewPersonBean.id}" required="true" requiredMessage="#{msg['missPersonId']}"/>
+                        <h:inputText id="#{msg['id']}" value="#{createNewPersonBean.person.id}" required="true" requiredMessage="#{msg['missPersonId']}"/>
                         <h:outputLabel value="#{msg['lastname']}" for="#{msg['lastname']}"/>
-                        <h:inputText id="#{msg['lastname']}" value="#{createNewPersonBean.lastName}" required="true" requiredMessage="#{msg['missPersonLastname']}"/>
+                        <h:inputText id="#{msg['lastname']}" value="#{createNewPersonBean.person.lastName}" required="true" requiredMessage="#{msg['missPersonLastname']}"/>
                         <h:outputLabel value="#{msg['firstname']}" for="#{msg['firstname']}"/>
-                        <h:inputText id="#{msg['firstname']}" value="#{createNewPersonBean.firstName}" required="true" requiredMessage="#{msg['missPersonFirstname']}"/>
+                        <h:inputText id="#{msg['firstname']}" value="#{createNewPersonBean.person.firstName}" required="true" requiredMessage="#{msg['missPersonFirstname']}"/>
                     </h:panelGrid>
                     <br/>
                     <h:commandButton value="#{msg['save']}" action="#{createNewPersonBean.savePerson}"/>

@@ -24,17 +24,13 @@ import javax.inject.Named;
 public class CreateNewPersonBean implements Serializable {
 
     private static final Logger LOGGER = Logger.getLogger(CreateNewPersonBean.class.getName());
-    private Long id;
-    private String lastName;
-    private String firstName;
+    private Person person;
     private Movie movieToAdd;
-    private Map<Long, Movie> movies;
 
     @Inject
     Services services;
 
     public CreateNewPersonBean() {
-        movies = new HashMap<>();
     }
 
     /**
@@ -43,13 +39,8 @@ public class CreateNewPersonBean implements Serializable {
      * @return Success if we saved a new person successfully otherwise error
      */
     public String savePerson() {
-        Person p = new Person();
-        p.setId(this.id);
-        p.setLastName(this.lastName);
-        p.setFirstName(this.firstName);
-        p.setMovies(this.movies);
         try {
-            services.addPerson(p);
+            services.addPerson(this.person);
         } catch (DuplicateElementException ex) {
             LOGGER.log(Level.SEVERE, "ERROR! occured when we save a new person {0}", ex);
             return "error";
@@ -63,14 +54,7 @@ public class CreateNewPersonBean implements Serializable {
      * successfully otherwise return Error
      */
     public String processPageCreatePerson() {
-        //Due to a SessionScope probled, I found this method to reinitialize the
-        //session attribute I didn't find a better method
-
-        this.id = null;
-        this.firstName = null;
-        this.lastName = null;
-        this.movieToAdd = null;
-        this.movies = null;
+        this.person = new Person();
         return "success";
     }
 
@@ -82,10 +66,7 @@ public class CreateNewPersonBean implements Serializable {
         if (this.movieToAdd == null) {
             return;
         }
-        if (this.movies == null) {
-            this.movies = new HashMap<>();
-        }
-        this.movies.put(this.movieToAdd.getId(), this.movieToAdd);
+        this.person.getMovies().put(this.movieToAdd.getId(), this.movieToAdd);
     }
 
     /**
@@ -94,7 +75,7 @@ public class CreateNewPersonBean implements Serializable {
      */
     public void removeMovie(Movie movie) {
 
-        this.movies.remove(movie.getId());
+        this.person.getMovies().remove(movie.getId());
 
     }
 
@@ -105,11 +86,7 @@ public class CreateNewPersonBean implements Serializable {
      *
      */
     public List<Movie> getMoviesList() {
-        try {
-            return new ArrayList(movies.values());
-        } catch (NullPointerException ex) {
-            return new ArrayList();
-        }
+        return new ArrayList(this.person.getMovies().values());
     }
 
     /**
@@ -123,10 +100,7 @@ public class CreateNewPersonBean implements Serializable {
         List<Movie> lm2 = new ArrayList();
 
         for (Movie m : lm) {
-            if (this.movies == null) {
-                return lm;
-            }
-            if (this.movies.get(m.getId()) == null) {
+            if (this.person.getMovies().get(m.getId()) == null) {
                 lm2.add(m);
             }
         }
@@ -135,28 +109,12 @@ public class CreateNewPersonBean implements Serializable {
     }
 
     //Getter and setter methods
-    public Long getId() {
-        return id;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Movie getMovieToAdd() {
@@ -165,14 +123,6 @@ public class CreateNewPersonBean implements Serializable {
 
     public void setMovieToAdd(Movie movie) {
         this.movieToAdd = movie;
-    }
-
-    public Map<Long, Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Map<Long, Movie> movies) {
-        this.movies = movies;
     }
 
 }

@@ -13,7 +13,7 @@
                 <center>
                     <!--We show a mess of success when we added a new person successfully -->
                     <h1><b><u>#{msg['success']}</u></b></h1>
-                    <h:outputText value="#{createNewPersonBean.lastName}, #{createNewPersonBean.firstName} #{msg['newPersonAdded']}"></h:outputText>
+                    <h:outputText value="#{createNewPersonBean.person.lastName}, #{createNewPersonBean.person.firstName} #{msg['newPersonAdded']}"></h:outputText>
                 </center>
                 <h:form>
                     <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['backHomePage']}"/>
