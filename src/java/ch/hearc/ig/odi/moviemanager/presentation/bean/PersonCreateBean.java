@@ -72,9 +72,7 @@ public class PersonCreateBean implements Serializable {
      * @param movie The removed movie from the movies list of the current person
      */
     public void removeMovie(Movie movie) {
-
         this.person.getMovies().remove(movie.getId());
-
     }
 
     /**

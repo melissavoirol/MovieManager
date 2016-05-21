@@ -17,12 +17,12 @@
                 <!-- a person's informations -->
                 <h:panelGrid columns="2">
 
-                    <h:outputLabel value="#{msg['id']}" for="#{msg['id']}"/>
-                    <h:outputText id="#{msg['id']}" value="#{personDetailsBean.id}"/>
-                    <h:outputLabel value="#{msg['lastname']}" for="#{msg['lastname']}"/>
-                    <h:outputText id="#{msg['lastname']}" value="#{personDetailsBean.lastName}"/>
-                    <h:outputLabel value="#{msg['firstname']}" for="#{msg['firstname']}"/>
-                    <h:outputText id="#{msg['firstname']}" value="#{personDetailsBean.firstName}"/>
+                    <h:outputLabel value="#{msg['id']}: " for="#{msg['id']}"/>
+                    <h:outputText id="#{msg['id']}" value="#{personDetailsBean.person.id}"/>
+                    <h:outputLabel value="#{msg['lastname']}: " for="#{msg['lastname']}"/>
+                    <h:outputText id="#{msg['lastname']}" value="#{personDetailsBean.person.lastName}"/>
+                    <h:outputLabel value="#{msg['firstname']}: " for="#{msg['firstname']}"/>
+                    <h:outputText id="#{msg['firstname']}" value="#{personDetailsBean.person.firstName}"/>
 
                 </h:panelGrid>
 

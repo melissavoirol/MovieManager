@@ -17,11 +17,11 @@
                     <!-- A new person's informations -->
                     <h:panelGrid columns="2">
 
-                        <h:outputLabel value="#{msg['id']}" for="#{msg['id']}"/>
+                        <h:outputLabel value="#{msg['id']}: " for="#{msg['id']}"/>
                         <h:inputText id="#{msg['id']}" value="#{personCreateBean.person.id}" required="true" requiredMessage="#{msg['missPersonId']}"/>
-                        <h:outputLabel value="#{msg['lastname']}" for="#{msg['lastname']}"/>
+                        <h:outputLabel value="#{msg['lastname']}: " for="#{msg['lastname']}"/>
                         <h:inputText id="#{msg['lastname']}" value="#{personCreateBean.person.lastName}" required="true" requiredMessage="#{msg['missPersonLastname']}"/>
-                        <h:outputLabel value="#{msg['firstname']}" for="#{msg['firstname']}"/>
+                        <h:outputLabel value="#{msg['firstname']}: " for="#{msg['firstname']}"/>
                         <h:inputText id="#{msg['firstname']}" value="#{personCreateBean.person.firstName}" required="true" requiredMessage="#{msg['missPersonFirstname']}"/>
                     </h:panelGrid>
                     <br/>
