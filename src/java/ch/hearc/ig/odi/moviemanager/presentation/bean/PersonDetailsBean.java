@@ -56,12 +56,8 @@ public class PersonDetailsBean implements Serializable {
             this.id = p.getId();
             this.firstName = p.getFirstName();
             this.lastName = p.getLastName();
-            this.movies = new HashMap<Long, Movie>();
-            try {
-                this.movies.putAll(p.getMovies());
-            } catch (NullPointerException ex) {
-
-            }
+            this.movies = new HashMap<>();
+            this.movies.putAll(p.getMovies());
 
         } catch (NotExistingElementException ex) {
             LOGGER.log(Level.SEVERE, "ERROR! occured when we load a person {0}", ex);
@@ -76,11 +72,7 @@ public class PersonDetailsBean implements Serializable {
      * @return
      */
     public List<Movie> getMoviesList() {
-        try {
-            return new ArrayList(movies.values());
-        } catch (NullPointerException ex) {
-            return new ArrayList();
-        }
+        return new ArrayList(movies.values());
     }
 
     //Getter and setter methods
