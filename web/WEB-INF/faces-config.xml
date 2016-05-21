@@ -29,7 +29,8 @@
         <navigation-case>
             <from-action>#{personDetailBean.getAPerson(person)}</from-action>
             <from-outcome>error</from-outcome>
-            <to-view-id>/pages/people/displayPersonError.xhtml</to-view-id>
+            <to-view-id>/pages/homePage.xhtml</to-view-id>
+            <redirect>true</redirect>
         </navigation-case>
         <navigation-case>
             <from-action>#{createNewPersonBean.processPageCreatePerson()}</from-action>
@@ -50,7 +51,7 @@
         <navigation-case>
             <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
             <from-outcome>error</from-outcome>
-            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+            <to-view-id>/pages/people/personDetails.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>          
@@ -71,7 +72,7 @@
         <navigation-case>
             <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
             <from-outcome>error</from-outcome>
-            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+            <to-view-id>/pages/people/createPerson.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{createNewPersonBean.savePerson}</from-action>
@@ -85,23 +86,7 @@
         </navigation-case>
     </navigation-rule>
     
-    <!-- Navigation from the error pages -->
-    <!--(displayPersonError.xhtml) -->
-    <navigation-rule>
-        <from-view-id>/pages/people/displayPersonError.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/pages/homePage.xhtml</to-view-id>
-            <redirect>true</redirect>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
-            <from-outcome>error</from-outcome>
-            <to-view-id>/pages/homePageError.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
+    <!-- Navigation from the error pages -->    
     <!--(createPersonError.xhtml) -->
     <navigation-rule>
         <from-view-id>/pages/people/createPersonError.xhtml</from-view-id>
@@ -114,7 +99,7 @@
         <navigation-case>
             <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
             <from-outcome>error</from-outcome>
-            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+            <to-view-id>/pages/people/createPersonError.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{createNewPersonBean.processPageCreatePerson()}</from-action>
@@ -136,7 +121,7 @@
         <navigation-case>
             <from-action>#{peopleDisplayBean.processHomePage()}</from-action>
             <from-outcome>error</from-outcome>
-            <to-view-id>/pages/homePageError.xhtml</to-view-id>
+            <to-view-id>/pages/people/createPersonSuccess.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{createNewPersonBean.processPageCreatePerson()}</from-action>
