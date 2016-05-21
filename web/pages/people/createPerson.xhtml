@@ -13,7 +13,7 @@
         <ui:define name="content">
             <h:body>
                 <h2>#{msg['createPersonHeader']}</h2>
-                <h:form id="newPerson">
+                <h:form>
                     <!-- A new person's informations -->
                     <h:panelGrid columns="2">
 
@@ -27,7 +27,8 @@
                     <br/>
                     <h:commandButton value="#{msg['save']}" action="#{createNewPersonBean.savePerson}"/>
                     <h:commandButton type="reset" value="#{msg['reset']}"/>
-
+                </h:form>
+                <h:form id="moviesAdded">
                     <!-- Person's watched movies -->
                     <br/>
                     <br/>
@@ -40,15 +41,12 @@
                         <f:selectItems value="#{createNewPersonBean.allMoviesList}" var="movie" itemLabel="#{movie.name}"/> 
                     </h:selectOneMenu>
                     <h:commandButton id="addAMovie" value="#{msg['select']}">
-                        <f:ajax execute="lovMovie" render="moviesAdded" listener="#{createNewPersonBean.addMovie}"/>
-
-                        <!-- to renew the possibilities when a film is added in the list of movies of the new person -->
-                        <f:ajax execute="addAMovie" render="lovMovie"/>
+                        <f:ajax execute="lovMovie" render="moviesAdded lovMovie" listener="#{createNewPersonBean.addMovie}"/>
                     </h:commandButton>
 
 
                     <!-- Show movies list -->
-                    <h:dataTable id="moviesAdded" value="#{createNewPersonBean.moviesList}" var="movie"
+                    <h:dataTable value="#{createNewPersonBean.moviesList}" var="movie"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
                                  rowClasses="order-table-odd-row,order-table-even-row"
@@ -64,7 +62,8 @@
                         </h:column>
                         <h:column> 
                             <f:facet name="header">#{msg['remove']}</f:facet>
-                            <h:commandButton value="#{msg['rem']}" action="#{createNewPersonBean.removeMovie(movie)}">
+                            <h:commandButton value="#{msg['rem']}">
+                                <f:ajax render="moviesAdded lovMovie" listener="#{createNewPersonBean.removeMovie(movie)}"/>
                             </h:commandButton>
                         </h:column>
                     </h:dataTable>
