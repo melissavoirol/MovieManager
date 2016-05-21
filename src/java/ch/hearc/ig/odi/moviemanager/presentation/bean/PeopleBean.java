@@ -19,24 +19,24 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class PeopleDisplayBean implements Serializable {
+public class PeopleBean implements Serializable {
 
     @Inject
     Services services;
-    private static final Logger LOGGER = Logger.getLogger(PeopleDisplayBean.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PeopleBean.class.getName());
     private List<Person> people;
 
     /**
      * Create new instance of PeopleDisplayBean controller
      *
      */
-    public PeopleDisplayBean() {
+    public PeopleBean() {
 
     }
 
     /**
-     * Initialze the current list of people of the PeopleDisplayBean controller
-     * with people that we instaciated in the services class
+     * Initialze the current list of people of the PeopleBean controller
+ with people that we instaciated in the services class
      */
     public void initPeople() {
         this.people = new ArrayList<>();

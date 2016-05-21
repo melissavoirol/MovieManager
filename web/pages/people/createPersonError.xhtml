@@ -16,8 +16,8 @@
                     <h1><b><u>#{msg['error']}</u></b></h1>
                 </center>
                 <h:form>
-                    <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['backHomePage']}"/>
-                    <h:commandButton action="#{createNewPersonBean.processPageCreatePerson()}" value="#{msg['backAddPersonPage']}"/>
+                    <h:commandButton action="#{peopleBean.processHomePage()}" value="#{msg['backHomePage']}"/>
+                    <h:commandButton action="#{personCreateBean.processPageCreatePerson()}" value="#{msg['backAddPersonPage']}"/>
                 </h:form>
             </h:body>
         </ui:define>  

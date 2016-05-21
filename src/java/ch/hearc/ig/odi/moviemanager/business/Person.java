@@ -16,7 +16,7 @@ public class Person {
     private Long id;
     private String firstName;
     private String lastName;
-    private Map<Long, Movie> movies = new HashMap<Long, Movie>();
+    private Map<Long, Movie> movies;
 
     /**
      * Constructor of the Person class, not parameterized
@@ -80,11 +80,7 @@ public class Person {
      * @return The number of movies that the current person has already seen.
      */
     public Integer numberOfMovies() {
-        try {
-            return this.movies.size();
-        } catch (NullPointerException ex) {
-            return 0;
-        }
+        return this.movies.size();
     }
 
     //Getter and setter methods

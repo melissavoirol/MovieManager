@@ -21,16 +21,16 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class CreateNewPersonBean implements Serializable {
+public class PersonCreateBean implements Serializable {
 
-    private static final Logger LOGGER = Logger.getLogger(CreateNewPersonBean.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PersonCreateBean.class.getName());
     private Person person;
     private Movie movieToAdd;
 
     @Inject
     Services services;
 
-    public CreateNewPersonBean() {
+    public PersonCreateBean() {
     }
 
     /**

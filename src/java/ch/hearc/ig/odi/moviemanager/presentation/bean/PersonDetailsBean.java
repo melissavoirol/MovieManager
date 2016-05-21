@@ -25,12 +25,12 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class PersonDetailBean implements Serializable {
+public class PersonDetailsBean implements Serializable {
 
     @Inject
     Services services;
 
-    private static final Logger LOGGER = Logger.getLogger(PersonDetailBean.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PersonDetailsBean.class.getName());
     private Long id;
     private String firstName;
     private String lastName;
@@ -40,7 +40,7 @@ public class PersonDetailBean implements Serializable {
      * Create new instance of PersonDetailBean controller
      *
      */
-    public PersonDetailBean() {
+    public PersonDetailsBean() {
     }
 
     /**
