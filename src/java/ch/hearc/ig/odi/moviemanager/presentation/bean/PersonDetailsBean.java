@@ -6,9 +6,7 @@ import ch.hearc.ig.odi.moviemanager.exception.NotExistingElementException;
 import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
@@ -31,10 +29,7 @@ public class PersonDetailsBean implements Serializable {
     Services services;
 
     private static final Logger LOGGER = Logger.getLogger(PersonDetailsBean.class.getName());
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private Map<Long, Movie> movies;
+    private Person person;
 
     /**
      * Create new instance of PersonDetailBean controller
@@ -48,21 +43,11 @@ public class PersonDetailsBean implements Serializable {
      * details.
      *
      * @param person The person that we want to instanciate in the session.
-     * @return Success or Error if there is an error or no.
+     * @return Success or Error if there is an error or not.
      */
     public String getAPerson(Person person) {
         try {
-            Person p = services.getAPerson(person);
-            this.id = p.getId();
-            this.firstName = p.getFirstName();
-            this.lastName = p.getLastName();
-            this.movies = new HashMap<Long, Movie>();
-            try {
-                this.movies.putAll(p.getMovies());
-            } catch (NullPointerException ex) {
-
-            }
-
+            this.person = services.getAPerson(person);
         } catch (NotExistingElementException ex) {
             LOGGER.log(Level.SEVERE, "ERROR! occured when we load a person {0}", ex);
             return "error";
@@ -76,36 +61,15 @@ public class PersonDetailsBean implements Serializable {
      * @return
      */
     public List<Movie> getMoviesList() {
-        try {
-            return new ArrayList(movies.values());
-        } catch (NullPointerException ex) {
-            return new ArrayList();
-        }
+        return new ArrayList(this.person.getMovies().values());
     }
 
     //Getter and setter methods
-    public Long getId() {
-        return id;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPerson(Person person) {
+        this.person = person;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
 }

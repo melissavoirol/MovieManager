@@ -6,9 +6,7 @@ import ch.hearc.ig.odi.moviemanager.exception.DuplicateElementException;
 import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
@@ -74,9 +72,7 @@ public class PersonCreateBean implements Serializable {
      * @param movie The removed movie from the movies list of the current person
      */
     public void removeMovie(Movie movie) {
-
         this.person.getMovies().remove(movie.getId());
-
     }
 
     /**

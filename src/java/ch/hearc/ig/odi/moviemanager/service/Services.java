@@ -119,14 +119,11 @@ public class Services implements Serializable {
             throw new DuplicateElementException("A person with the id: " + newPerson.getId() + " already exist");
         }
         this.people.put(newPerson.getId(), newPerson);
-        try {
-            for (Map.Entry<Long, Movie> entryMovie : newPerson.getMovies().entrySet()) {
-                Movie m = entryMovie.getValue();
-                if (this.movies.get(m.getId()) != null) {
-                    movies.get(m.getId()).addPerson(newPerson.getId(), newPerson.getFirstName(), newPerson.getLastName());
-                }
+        for (Map.Entry<Long, Movie> entryMovie : newPerson.getMovies().entrySet()) {
+            Movie m = entryMovie.getValue();
+            if (this.movies.get(m.getId()) != null) {
+                movies.get(m.getId()).addPerson(newPerson.getId(), newPerson.getFirstName(), newPerson.getLastName());
             }
-        } catch (NullPointerException ex) {
         }
 
     }
@@ -140,14 +137,14 @@ public class Services implements Serializable {
     public List<Movie> getMoviesList() {
         return new ArrayList(movies.values());
     }
-    
+
     /**
      * Creates a new movie
-     * 
+     *
      * @param id Unique number of the movie
      * @param name Name of the movie
      * @param producer Producer of the movie
-     * @throws DuplicateElementException 
+     * @throws DuplicateElementException
      */
     public void saveMovie(Long id, String name, String producer) throws DuplicateElementException {
         movies.put(id, new Movie(id, name, producer));
