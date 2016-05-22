@@ -39,13 +39,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{msg['people.fn']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkViewPeopleFirstname" value="#{people.firstName}" action="#{personDetailBean.getAPerson(people)}" />
+                            <h:commandLink id="cmdLnkViewPeopleFirstname" value="#{people.firstName}" action="#{personDetailsBean.getAPerson(people)}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{msg['people.ln']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkViewPeopleLastname" value="#{people.lastName}" action="#{personDetailBean.getAPerson(people)}" />
+                            <h:commandLink id="cmdLnkViewPeopleLastname" value="#{people.lastName}" action="#{personDetailsBean.getAPerson(people)}" />
                         </h:column>
                     </h:dataTable>
                     <br/>

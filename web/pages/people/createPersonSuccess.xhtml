@@ -14,11 +14,11 @@
                 <center>
                     <!--We show a mess of success when we added a new person successfully -->
                     <h1><b><u>#{msg['success']}</u></b></h1>
-                    <h:outputText value="#{createNewPersonBean.person.lastName}, #{createNewPersonBean.person.firstName} #{msg['newPersonAdded']}"></h:outputText>
+                    <h:outputText value="#{personCreateBean.person.lastName}, #{personCreateBean.person.firstName} #{msg['newPersonAdded']}"></h:outputText>
                 </center>
                 <h:form>
-                    <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['backHomePage']}"/>
-                    <h:commandButton action="#{createNewPersonBean.processPageCreatePerson()}" value="#{msg['backAddPersonPage']}"/>
+                    <h:commandButton action="#{peopleBean.processHomePage()}" value="#{msg['backHomePage']}"/>
+                    <h:commandButton action="#{personCreateBean.processPageCreatePerson()}" value="#{msg['backAddPersonPage']}"/>
                 </h:form>
             </h:body>
         </ui:define>  

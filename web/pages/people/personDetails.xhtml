@@ -18,11 +18,11 @@
                 <h:panelGrid columns="2">
 
                     <h:outputLabel value="#{msg['id']}" for="#{msg['id']}"/>
-                    <h:outputText id="#{msg['id']}" value="#{personDetailBean.id}"/>
+                    <h:outputText id="#{msg['id']}" value="#{personDetailsBean.id}"/>
                     <h:outputLabel value="#{msg['lastname']}" for="#{msg['lastname']}"/>
-                    <h:outputText id="#{msg['lastname']}" value="#{personDetailBean.lastName}"/>
+                    <h:outputText id="#{msg['lastname']}" value="#{personDetailsBean.lastName}"/>
                     <h:outputLabel value="#{msg['firstname']}" for="#{msg['firstname']}"/>
-                    <h:outputText id="#{msg['firstname']}" value="#{personDetailBean.firstName}"/>
+                    <h:outputText id="#{msg['firstname']}" value="#{personDetailsBean.firstName}"/>
 
                 </h:panelGrid>
 
@@ -32,7 +32,7 @@
                 <h3><h:outputText value="#{msg['personMoviesList']}" /></h3>
                 <br/>
                 <h:form>
-                    <h:dataTable value="#{personDetailBean.moviesList}" var="movie"
+                    <h:dataTable value="#{personDetailsBean.moviesList}" var="movie"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
                                  rowClasses="order-table-odd-row,order-table-even-row"
@@ -53,7 +53,7 @@
                         </h:column>
                     </h:dataTable>
                     <br/>
-                    <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['backHomePage']}"/>
+                    <h:commandButton action="#{peopleBean.processHomePage()}" value="#{msg['backHomePage']}"/>
                     <br/><br/>
                 </h:form>
             </h:body>

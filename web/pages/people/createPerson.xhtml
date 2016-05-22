@@ -18,14 +18,14 @@
                     <h:panelGrid columns="2">
 
                         <h:outputLabel value="#{msg['id']}" for="#{msg['id']}"/>
-                        <h:inputText id="#{msg['id']}" value="#{createNewPersonBean.person.id}" required="true" requiredMessage="#{msg['missPersonId']}"/>
+                        <h:inputText id="#{msg['id']}" value="#{personCreateBean.person.id}" required="true" requiredMessage="#{msg['missPersonId']}"/>
                         <h:outputLabel value="#{msg['lastname']}" for="#{msg['lastname']}"/>
-                        <h:inputText id="#{msg['lastname']}" value="#{createNewPersonBean.person.lastName}" required="true" requiredMessage="#{msg['missPersonLastname']}"/>
+                        <h:inputText id="#{msg['lastname']}" value="#{personCreateBean.person.lastName}" required="true" requiredMessage="#{msg['missPersonLastname']}"/>
                         <h:outputLabel value="#{msg['firstname']}" for="#{msg['firstname']}"/>
-                        <h:inputText id="#{msg['firstname']}" value="#{createNewPersonBean.person.firstName}" required="true" requiredMessage="#{msg['missPersonFirstname']}"/>
+                        <h:inputText id="#{msg['firstname']}" value="#{personCreateBean.person.firstName}" required="true" requiredMessage="#{msg['missPersonFirstname']}"/>
                     </h:panelGrid>
                     <br/>
-                    <h:commandButton value="#{msg['save']}" action="#{createNewPersonBean.savePerson}"/>
+                    <h:commandButton value="#{msg['save']}" action="#{personCreateBean.savePerson}"/>
                     <h:commandButton type="reset" value="#{msg['reset']}"/>
                 </h:form>
                 <h:form id="moviesAdded">
@@ -35,18 +35,18 @@
                     <h3><h:outputText value="#{msg['personMoviesList']}" /></h3>
                     <br/>
                     <!-- add a movie -->
-                    <h:selectOneMenu  id="lovMovie" value="#{createNewPersonBean.movieToAdd}">
+                    <h:selectOneMenu  id="lovMovie" value="#{personCreateBean.movieToAdd}">
                         <f:selectItem itemLabel="#{msg['choiseMovie']}"/>
                         <f:converter binding="#{movieLOVConverter}" />
-                        <f:selectItems value="#{createNewPersonBean.allMoviesList}" var="movie" itemLabel="#{movie.name}"/> 
+                        <f:selectItems value="#{personCreateBean.allMoviesList}" var="movie" itemLabel="#{movie.name}"/> 
                     </h:selectOneMenu>
                     <h:commandButton id="addAMovie" value="#{msg['select']}">
-                        <f:ajax execute="lovMovie" render="moviesAdded lovMovie" listener="#{createNewPersonBean.addMovie}"/>
+                        <f:ajax execute="lovMovie" render="moviesAdded lovMovie" listener="#{personCreateBean.addMovie}"/>
                     </h:commandButton>
 
 
                     <!-- Show movies list -->
-                    <h:dataTable value="#{createNewPersonBean.moviesList}" var="movie"
+                    <h:dataTable value="#{personCreateBean.moviesList}" var="movie"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
                                  rowClasses="order-table-odd-row,order-table-even-row"
@@ -63,7 +63,7 @@
                         <h:column> 
                             <f:facet name="header">#{msg['remove']}</f:facet>
                             <h:commandButton value="#{msg['rem']}">
-                                <f:ajax render="moviesAdded lovMovie" listener="#{createNewPersonBean.removeMovie(movie)}"/>
+                                <f:ajax render="moviesAdded lovMovie" listener="#{personCreateBean.removeMovie(movie)}"/>
                             </h:commandButton>
                         </h:column>
                     </h:dataTable>
@@ -73,7 +73,7 @@
                 <h:form>
                     <br/>
                     <br/>
-                    <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['cancel']}"/>
+                    <h:commandButton action="#{peopleBean.processHomePage()}" value="#{msg['cancel']}"/>
                     <br/><br/>
                 </h:form>
             </h:body>
