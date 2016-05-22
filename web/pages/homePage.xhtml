@@ -7,12 +7,13 @@
     <h:head>
         <title>#{msg['homepage.title.and.header']}</title>
     </h:head>
-    <!-- Initialization of the list of people in the peopleDisplayBean for the current view-->
+    <!-- Initialization of the list of people in the peopleBean for the current view-->
     <f:metadata>
-        <f:viewAction action="#{peopleDisplayBean.initPeople()}"/>
+        <f:viewAction action="#{peopleBean.initPeople()}"/>
     </f:metadata>
     <h:body>
         <ui:composition template="/template/MainTemplate.xhtml">
+            <ui:define name="title">#{msg['homepage.title.and.header']}</ui:define>
             <ui:define name="top">#{msg['homepage.title.and.header']}</ui:define>
             <ui:define name="content">
                 <h2>
@@ -20,8 +21,8 @@
                 </h2>
                 <br/>
                 <h:form>
-                    <!-- here we get the people list from peopleDisplayBean and we use the variable person to display each person -->
-                    <h:dataTable value="#{peopleDisplayBean.people}" var="person"
+                    <!-- here we get the people list from peopleBean and we use the variable person to display each person -->
+                    <h:dataTable value="#{peopleBean.people}" var="person"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
                                  rowClasses="order-table-odd-row,order-table-even-row">
@@ -32,13 +33,13 @@
                         <h:column> 
 
                             <f:facet name="header">#{msg['firstname']}</f:facet>
-                            <h:commandLink action="#{personDetailBean.getAPerson(person)}">
+                            <h:commandLink action="#{personDetailsBean.getAPerson(person)}">
                                 #{person.firstName}
                             </h:commandLink>
                         </h:column>
                         <h:column>
                             <f:facet name="header">#{msg['lastname']}</f:facet>
-                            <h:commandLink action="#{personDetailBean.getAPerson(person)}">
+                            <h:commandLink action="#{personDetailsBean.getAPerson(person)}">
                                 #{person.lastName}
                             </h:commandLink>
                         </h:column>
@@ -48,7 +49,7 @@
                         </h:column>
                     </h:dataTable>
                     <br/>
-                    <h:commandButton action="#{createNewPersonBean.processPageCreatePerson()}" value="#{msg['add']}"></h:commandButton>
+                    <h:commandButton action="#{personCreateBean.processPageCreatePerson()}" value="#{msg['add']}"></h:commandButton>
                 </h:form>
                 <hr/>
                 <br/><br/>

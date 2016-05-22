@@ -5,7 +5,6 @@ import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -19,24 +18,24 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class PeopleDisplayBean implements Serializable {
+public class PeopleBean implements Serializable {
 
     @Inject
     Services services;
-    private static final Logger LOGGER = Logger.getLogger(PeopleDisplayBean.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PeopleBean.class.getName());
     private List<Person> people;
 
     /**
      * Create new instance of PeopleDisplayBean controller
      *
      */
-    public PeopleDisplayBean() {
+    public PeopleBean() {
 
     }
 
     /**
-     * Initialze the current list of people of the PeopleDisplayBean controller
-     * with people that we instaciated in the services class
+     * Initialze the current list of people of the PeopleBean controller with
+     * people that we instaciated in the services class
      */
     public void initPeople() {
         this.people = new ArrayList<>();
@@ -48,11 +47,6 @@ public class PeopleDisplayBean implements Serializable {
      * @return The current list of people
      */
     public List<Person> getPeople() {
-        try {
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "ERROR! occured when we load the people list in the home page {0}", e);
-            return null;
-        }
         return this.people;
     }
 
@@ -62,11 +56,6 @@ public class PeopleDisplayBean implements Serializable {
      * @return
      */
     public String processHomePage() {
-        try {
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "ERROR! occured when we load the home page {0}", e);
-            return "error";
-        }
         return "success";
     }
 
