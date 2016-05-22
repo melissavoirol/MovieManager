@@ -4,15 +4,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{msg['createNewPersonHeaderError']}</title>
+        <title>#{msg['createNewPersonHeaderSuccess']}</title>
     </h:head>
     <ui:composition template="/template/MainTemplate.xhtml">
-        <ui:define name="top">#{msg['createNewPersonHeaderError']}</ui:define>
+        <ui:define name="title">#{msg['createNewPersonHeaderSuccess']}</ui:define>
+        <ui:define name="top">#{msg['createNewPersonHeaderSuccess']}</ui:define>
         <ui:define name="content">
             <h:body>
-                <!--We show a mess of error when we failed to add a new person -->
                 <center>
-                    <h1><b><u>#{msg['error']}</u></b></h1>
+                    <!--We show a mess of success when we added a new person successfully -->
+                    <h1><b><u>#{msg['success']}</u></b></h1>
+                    <h:outputText value="#{createNewPersonBean.person.lastName}, #{createNewPersonBean.person.firstName} #{msg['newPersonAdded']}"></h:outputText>
                 </center>
                 <h:form>
                     <h:commandButton action="#{peopleDisplayBean.processHomePage()}" value="#{msg['backHomePage']}"/>
@@ -22,3 +24,4 @@
         </ui:define>  
     </ui:composition>
 </html>
+

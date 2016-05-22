@@ -22,6 +22,7 @@ public class Person {
      * Constructor of the Person class, not parameterized
      */
     public Person() {
+        this.movies = new HashMap();
     }
 
     public Person(Long id, String firstName, String lastName, Map<Long, Movie> movies) {
@@ -35,6 +36,7 @@ public class Person {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.movies = new HashMap();
     }
 
     /**
